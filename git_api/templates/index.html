@@ -47,8 +47,13 @@
 		          </tr>
 		        {% endfor %}
 		      </tbody>
+		      
+		  	{% if error %}
+		  	   <h2>{{error}}</h3>
+		  	{% endif %}
 		    </table>
 	  	{% endif %}
+
 	</div>
 	
 </body>

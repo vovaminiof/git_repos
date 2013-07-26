@@ -8,13 +8,14 @@ def home(request):
         query = request.POST['query']
         users = []
         try:
-            g = Github()
+            g = Github('vovaminiof', '14011994ly', timeout=60*2)
             repo = g.get_repo(query)
             for user in repo.get_contributors():
                 obj = {'id': user.id, 'name' : user.name, 'login' : user.login, 'link' : user.html_url}
                 users.append(obj)
+                print obj
         except Exception as ex:
-            return HttpResponse('Currently unavailable')
+            return render(request, 'index.html', {'users':users, 'error' : 'Rate limit exceeded '})
         
         return render(request, 'index.html', {'users':users})
 

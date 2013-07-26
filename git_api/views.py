@@ -8,7 +8,7 @@ def home(request):
         query = request.POST['query']
         users = []
         try:
-            g = Github('vovaminiof', '14011994ly', timeout=60*2)
+            g = Github(timeout=60*2)
             repo = g.get_repo(query)
             for user in repo.get_contributors():
                 obj = {'id': user.id, 'name' : user.name, 'login' : user.login, 'link' : user.html_url}

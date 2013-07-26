@@ -1,0 +1,3 @@
+project1
+Djnago==1.4.5
+PyGithub==1.17.0

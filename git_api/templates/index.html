@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title></title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-responsive.css' %}">
+	<style>
+	.search_input{
+		height: 30px !important;
+		width: 500px !important;
+	}
+	.search{
+		position: relative;
+		top: 100px;
+	}
+	  .search_results{
+	    position: relative;
+	    top: 110px;
+	  }
+	</style>
+</head>
+<body>
+	<div class="container" align="center">
+	    <form class="form-search" method="POST"> {% csrf_token %}
+		  <div class="input-append search">
+		    <input type="text" name="query" class="span2 search-query search_input"/>
+		    <button type="submit" class="btn">Search</button>
+		  </div>
+		</form>
+		{% if users %}
+		    <table class="table search_results">
+		      <thead>
+		        <tr>
+		          <th>#</th>
+		          <th>Name</th>
+		          <th>Login</th>
+		          <th>Link</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        {% for user in users %}
+		          <tr>
+		            <td> {{user.id}} </td>
+		            <td> {{user.name}} </td>
+		            <td> {{user.login}} </td>
+		            <td> <a href="{{user.link}}">{{user.link}}</a> </td>
+		          </tr>
+		        {% endfor %}
+		      </tbody>
+		    </table>
+	  	{% endif %}
+	</div>
+	
+</body>
+</html>
